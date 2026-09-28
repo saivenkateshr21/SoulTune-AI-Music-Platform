@@ -10,7 +10,7 @@
 
 Built with a modular FastAPI backend and a React 19 SPA frontend, SoulTune combines deterministic heuristic parsing, LLM-enhanced mood interpretation, multi-source candidate aggregation (Spotify, Last.fm, local library), weighted scoring, and intelligent diversification into a single cohesive pipeline.
 
-Repository: https://github.com/Sriram4232/SoulTune
+Repository: https://github.com/saivenkateshr21/SoulTune-AI-Music-Platform
 
 ---
 
@@ -316,7 +316,7 @@ SoulTune/
 ### 7.1 Clone the Repository
 
 ```bash
-git clone https://github.com/Sriram4232/SoulTune.git
+git clone https://github.com/saivenkateshr21/SoulTune-AI-Music-Platform
 cd SoulTune
 ```
 
@@ -374,33 +374,48 @@ cp Backend/.env.example Backend/.env
 **Backend (`Backend/.env`):**
 
 ```env
-# AI & Music APIs (all optional — app works without them)
-GROQ_API_KEY=                           # Enables LLM-enhanced mood parsing
-GROQ_MODEL=openai/gpt-oss-20b          # Primary LLM model
-SPOTIFY_CLIENT_ID=                      # Spotify Web API credentials
+# AI / LLM
+GROQ_API_KEY=
+GROQ_MODEL=openai/gpt-oss-20b
+# Used only if the configured model is unavailable or retired.
+# Empty disables model retry.
+GROQ_FALLBACK_MODEL=openai/gpt-oss-20b
+
+# Spotify
+SPOTIFY_CLIENT_ID=
 SPOTIFY_CLIENT_SECRET=
-LASTFM_API_KEY=                         # Last.fm metadata enrichment (via LASTFM_API_KEY env)
 
-# Database (default: local SQLite, no config needed)
-MONGODB_URI=                            # Set for MongoDB; leave empty for SQLite
-DATABASE_PATH=data/curator.sqlite3      # SQLite file path
+# Last.fm
+LASTFM_API_KEY=
 
-# Local Audio
-LOCAL_MUSIC_DIR=                        # Empty defaults to fallback_songs/
+# MongoDB
+MONGODB_URI=
+MONGODB_DATABASE=ai_music_curator
 
-# Authentication
-python -c "import secrets; print(secrets.token_urlsafe(48))"
-MAIL_PROVIDER=smtp                      # smtp or resend
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
-SMTP_USERNAME=you@example.com
-SMTP_PASSWORD=                          # App password, not account password
+# Local database fallback
+DATABASE_PATH=data/curator.sqlite3
 
-# Security
-# Security
-COOKIE_SECURE=false                     # Set true behind HTTPS in production (Render: COOKIE_SECURE=true COOKIE_SAMESITE=none)
+# Local fallback music directory
+# Leave empty to use fallback_songs/ under the project folder.
+LOCAL_MUSIC_DIR=
+
+# Frontend / CORS
+# For local development + Vercel production.
+ALLOWED_ORIGINS=https://soul-tune-kappa.vercel.app,https://soultune-zctz.onrender.com,http://localhost:5173,http://127.0.0.1:5173,http://localhost:4173,http://127.0.0.1:4173,http://localhost:8000,http://127.0.0.1:8000
+
+# Cookies
+# Production on Render + Vercel:
+# COOKIE_SECURE=true
+# COOKIE_SAMESITE=none
+COOKIE_SECURE=false
+COOKIE_SAMESITE=lax
+
+# Session lifetime
+SESSION_HOURS=168
+GUEST_SESSION_HOURS=24
+
+# Environment
 ENVIRONMENT=development
-ALLOWED_ORIGINS=https://soul-tune-kappa.vercel.app,https://soultune-zctz.onrender.com,http://localhost:5173,http://127.0.0.1:5173
 ```
 
 ---
