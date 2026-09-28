@@ -401,7 +401,7 @@ LOCAL_MUSIC_DIR=
 
 # Frontend / CORS
 # For local development + Vercel production.
-ALLOWED_ORIGINS=https://soul-tune-kappa.vercel.app,https://soultune-zctz.onrender.com,http://localhost:5173,http://127.0.0.1:5173,http://localhost:4173,http://127.0.0.1:4173,http://localhost:8000,http://127.0.0.1:8000
+ALLOWED_ORIGINS=https://soul-tune-ai-music-platform.vercel.app/,https://soultune-ai-music-platform-backend.onrender.com,http://localhost:5173,http://127.0.0.1:5173,http://localhost:4173,http://127.0.0.1:4173,http://localhost:8000,http://127.0.0.1:8000
 
 # Cookies
 # Production on Render + Vercel:
@@ -428,13 +428,13 @@ SoulTune is deployed and live at the following endpoints:
 
 | Service | Provider | Live URL |
 | :--- | :--- | :--- |
-| **Frontend Application** | Vercel | [https://soul-tune-kappa.vercel.app/](https://soul-tune-kappa.vercel.app/) |
-| **Backend API Server** | Render | [https://soultune-zctz.onrender.com](https://soultune-zctz.onrender.com) |
-| **API Health Check** | Render | [https://soultune-zctz.onrender.com/api/v1/health](https://soultune-zctz.onrender.com/api/v1/health) |
+| **Frontend Application** | Vercel | [https://soul-tune-ai-music-platform.vercel.app/](https://soul-tune-ai-music-platform.vercel.app/) |
+| **Backend API Server** | Render | [https://soultune-ai-music-platform-backend.onrender.com](https://soultune-ai-music-platform-backend.onrender.com) |
+| **API Health Check** | Render | [https://soultune-ai-music-platform-backend.onrender.com/api/v1/health](https://soultune-ai-music-platform-backend.onrender.com/api/v1/health) |
 
 #### Smart Backend Resolution (Deployed with Local Fallback)
 The application dynamically resolves the backend:
-- **Deployed Site:** When visited on Vercel (`soul-tune-kappa.vercel.app`), it connects to the deployed Render backend (with edge `/api` proxying via `vercel.json`).
+- **Deployed Site:** When visited on Vercel (`soul-tune-ai-music-platform.vercel.app`), it connects to the deployed Render backend (with edge `/api` proxying via `vercel.json`).
 - **Local Development:** When running locally (`http://localhost:5173`), it connects to the deployed Render backend if available, and seamlessly falls back to your local backend (`http://127.0.0.1:8000`) if the deployed server is asleep or unreachable.
 - **Explicit Override:** You can force a specific target anytime by setting `VITE_API_URL` in `Frontend/.env` (e.g. `VITE_API_URL=http://127.0.0.1:8000`).
 
