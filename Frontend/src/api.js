@@ -1,4 +1,4 @@
-export const DEPLOYED_BACKEND_URL = 'https://soultune-zctz.onrender.com';
+export const DEPLOYED_BACKEND_URL = 'https://soultune-ai-music-platform-backend.onrender.com';
 export const LOCAL_BACKEND_URL = 'http://127.0.0.1:8000';
 export const DEPLOYED_FRONTEND_URL = 'https://soul-tune-kappa.vercel.app';
 

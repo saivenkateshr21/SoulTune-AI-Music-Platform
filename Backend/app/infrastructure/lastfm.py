@@ -110,23 +110,51 @@ async def lastfm_candidates(profile: dict) -> tuple[list[dict], list[str]]:
         tracks = [track for item in items[:60] if isinstance(item, dict) and (track := _parse_track(item, tag))]
         return tag, tracks
 
-    async with httpx.AsyncClient(timeout=httpx.Timeout(5.0, connect=2.5)) as client:
-        results = await asyncio.gather(*(fetch(client, tag) for tag in missing), return_exceptions=True)
+    async with httpx.AsyncClient(
+        timeout=httpx.Timeout(5.0, connect=2.5)
+    ) as client:
+        results = await asyncio.gather(
+            *(fetch(client, tag) for tag in missing),
+            return_exceptions=True,
+        )
+
     failed = False
+
     for result in results:
-        if isinstance(result, Exception):
+        if isinstance(result, BaseException):
             failed = True
-        else:
-            tag, tracks = result
-            cache[tag] = (now, tracks)
+            continue
+
+        tag, tracks = result
+        cache[tag] = (now, tracks)
+
     if failed:
         _set_circuit(now + 60)
+
     if len(cache) > 50:
-        oldest = sorted(cache, key=lambda tag: cache[tag][0])[:len(cache) - 50]
+        oldest = sorted(
+            cache,
+            key=lambda tag: cache[tag][0],
+        )[: len(cache) - 50]
+
         for tag in oldest:
             cache.pop(tag, None)
-    result_tracks = [track for tag in tags for track in cache.get(tag, (0, []))[1]]
-    warnings = ["Last.fm is unavailable; local songs, cached metadata and demo recommendations remain available."] if failed else []
+
+    result_tracks = [
+        track
+        for tag in tags
+        for track in cache.get(tag, (0, []))[1]
+    ]
+
+    warnings = (
+        [
+            "Last.fm is unavailable; local songs, cached metadata "
+            "and demo recommendations remain available."
+        ]
+        if failed
+        else []
+    )
+
     return copy.deepcopy(result_tracks), warnings
 
 
