@@ -194,7 +194,7 @@ async def spotify_candidates(profile: dict) -> tuple[list[dict], list[str]]:
                 return_exceptions=True
             )
             for res in results:
-                if isinstance(res, Exception):
+                if isinstance(res, BaseException):
                     failed = True
                     logger.warning("Spotify search query failed: %s", res)
                 else:
