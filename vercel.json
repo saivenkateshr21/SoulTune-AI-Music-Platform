@@ -3,7 +3,7 @@
   "rewrites": [
     {
       "source": "/api/:match*",
-      "destination": "https://soultune-zctz.onrender.com/api/:match*"
+      "destination": "https://soultune-ai-music-platform-backend.onrender.com/api/:match*"
     }
   ]
 }

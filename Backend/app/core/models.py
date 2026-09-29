@@ -57,8 +57,7 @@ class Login(InputModel):
         return value.strip().casefold()
 
 
-# class VerifyOTP(InputModel):
-#     code: str = Field(pattern=r"^[0-9]{6}$", repr=False)
+
 
 
 class PreferenceUpdate(InputModel):

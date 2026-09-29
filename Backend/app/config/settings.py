@@ -78,7 +78,7 @@ class Settings:
     mongodb_database: str = field(
         default_factory=lambda: os.getenv(
             "MONGODB_DATABASE",
-            "soultune",
+            "ai_music_curator",
         )
     )
 
@@ -98,8 +98,8 @@ class Settings:
                     "http://127.0.0.1:4173,"
                     "http://localhost:8000,"
                     "http://127.0.0.1:8000,"
-                    "https://soul-tune-kappa.vercel.app,"
-                    "https://soultune-zctz.onrender.com"
+                    "https://soul-tune-ai-music-platform.vercel.app/,"
+                    "https://soultune-ai-music-platform-backend.onrender.com"
                 ),
             ).split(",")
             if origin.strip()

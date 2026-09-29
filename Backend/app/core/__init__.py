@@ -14,7 +14,6 @@ from .models import (
     PreferenceUpdate,
     ProfileUpdate,
     Register,
-    # VerifyOTP,
 )
 from .normalization import (
     ACTIVITIES,
@@ -40,7 +39,6 @@ __all__ = [
     "DEFAULT_PREFERENCES", "AccountDelete", "AddTrack", "CreatePlaylist", "Feedback",
     "Generate", "InputModel", "Login", "MoodProfile", "PasswordChange", "PlaylistUpdate",
     "PreferenceUpdate", "ProfileUpdate", "Register",
-    #  "VerifyOTP",
     "ACTIVITIES", "GENRES", "GLOBAL_DIVERSE_LANGUAGES", "LANGUAGES", "MASS_INDICATORS",
     "MOOD_VALUES", "MOODS", "canonical_genre", "clamp", "contains_term", "extract_negative_clauses",
     "normalize", "title_case", "union_unique",

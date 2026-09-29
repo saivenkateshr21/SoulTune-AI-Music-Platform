@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 
-const backendTarget = process.env.VITE_API_TARGET || process.env.BACKEND_URL || 'https://soultune-zctz.onrender.com';
+const backendTarget = process.env.VITE_API_TARGET || process.env.BACKEND_URL || 'https://soultune-ai-music-platform-backend.onrender.com';
 const isExternal = !backendTarget.includes('127.0.0.1') && !backendTarget.includes('localhost');
 
 const proxyConfig = {

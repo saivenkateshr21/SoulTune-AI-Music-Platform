@@ -20,7 +20,6 @@ from .core.models import (
     ProfileUpdate,
     Refine,
     Register,
-    # VerifyOTP,
 )
 
 __all__ = [
@@ -38,5 +37,4 @@ __all__ = [
     "ProfileUpdate",
     "Refine",
     "Register",
-    # "VerifyOTP",
 ]
